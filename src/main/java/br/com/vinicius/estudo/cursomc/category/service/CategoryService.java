@@ -1,7 +1,7 @@
 package br.com.vinicius.estudo.cursomc.category.service;
 
 import br.com.vinicius.estudo.cursomc.category.entity.CategoryEntity;
-import br.com.vinicius.estudo.cursomc.category.exceptions.CategoryNotFoundException;
+import br.com.vinicius.estudo.cursomc.exceptions.CategoryNotFoundException;
 import br.com.vinicius.estudo.cursomc.category.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

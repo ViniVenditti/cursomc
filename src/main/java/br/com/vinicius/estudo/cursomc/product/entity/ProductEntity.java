@@ -2,11 +2,17 @@ package br.com.vinicius.estudo.cursomc.product.entity;
 
 import br.com.vinicius.estudo.cursomc.category.entity.CategoryEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Data
 @Entity
 public class ProductEntity {
 
