@@ -2,6 +2,7 @@ package br.com.vinicius.estudo.cursomc.client.entity;
 
 import br.com.vinicius.estudo.cursomc.address.entity.AddressEntity;
 import br.com.vinicius.estudo.cursomc.enums.ClientType;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class ClientEntity {
     private String identification;
     private Integer type;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "client")
     private List<AddressEntity> addresses = new ArrayList<>();
 

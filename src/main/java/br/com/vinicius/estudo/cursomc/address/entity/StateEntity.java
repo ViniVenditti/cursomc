@@ -1,5 +1,7 @@
 package br.com.vinicius.estudo.cursomc.address.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,7 @@ public class StateEntity {
     private Long id;
     private String name;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "state")
     private List<CityEntity> cities = new ArrayList<>();
 

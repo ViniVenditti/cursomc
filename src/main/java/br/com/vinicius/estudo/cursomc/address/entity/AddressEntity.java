@@ -1,6 +1,7 @@
 package br.com.vinicius.estudo.cursomc.address.entity;
 
 import br.com.vinicius.estudo.cursomc.client.entity.ClientEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -16,6 +17,7 @@ public class AddressEntity {
     private String district;
     private String zipCode;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "client_id")
     private ClientEntity client;

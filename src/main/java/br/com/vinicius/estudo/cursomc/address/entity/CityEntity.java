@@ -1,5 +1,7 @@
 package br.com.vinicius.estudo.cursomc.address.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ public class CityEntity {
     private Long id;
     private String name;
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "state_id")
     private StateEntity state;

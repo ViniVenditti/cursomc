@@ -1,4 +1,4 @@
-package br.com.vinicius.estudo.cursomc.client.entity.repository;
+package br.com.vinicius.estudo.cursomc.client.repository;
 
 import br.com.vinicius.estudo.cursomc.client.entity.ClientEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

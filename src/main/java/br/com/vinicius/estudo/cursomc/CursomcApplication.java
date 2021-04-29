@@ -9,7 +9,7 @@ import br.com.vinicius.estudo.cursomc.address.repository.StateRepository;
 import br.com.vinicius.estudo.cursomc.category.entity.CategoryEntity;
 import br.com.vinicius.estudo.cursomc.category.repository.CategoryRepository;
 import br.com.vinicius.estudo.cursomc.client.entity.ClientEntity;
-import br.com.vinicius.estudo.cursomc.client.entity.repository.ClientRepository;
+import br.com.vinicius.estudo.cursomc.client.repository.ClientRepository;
 import br.com.vinicius.estudo.cursomc.enums.ClientType;
 import br.com.vinicius.estudo.cursomc.product.entity.ProductEntity;
 import br.com.vinicius.estudo.cursomc.product.repository.ProductRepository;
