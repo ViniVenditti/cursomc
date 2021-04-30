@@ -12,10 +12,8 @@ import br.com.vinicius.estudo.cursomc.client.entity.ClientEntity;
 import br.com.vinicius.estudo.cursomc.client.repository.ClientRepository;
 import br.com.vinicius.estudo.cursomc.enums.ClientType;
 import br.com.vinicius.estudo.cursomc.enums.StatePayment;
-import br.com.vinicius.estudo.cursomc.order.entity.OrderEntity;
-import br.com.vinicius.estudo.cursomc.order.entity.PaymentCardEntity;
-import br.com.vinicius.estudo.cursomc.order.entity.PaymentEntity;
-import br.com.vinicius.estudo.cursomc.order.entity.PaymentSlipEntity;
+import br.com.vinicius.estudo.cursomc.order.entity.*;
+import br.com.vinicius.estudo.cursomc.order.repository.OrderItemRepository;
 import br.com.vinicius.estudo.cursomc.order.repository.OrderRepository;
 import br.com.vinicius.estudo.cursomc.order.repository.PaymentRepository;
 import br.com.vinicius.estudo.cursomc.product.entity.ProductEntity;
@@ -48,6 +46,8 @@ public class CursomcApplication implements CommandLineRunner {
 	private OrderRepository orderRepository;
 	@Autowired
 	private PaymentRepository paymentRepository;
+	@Autowired
+	private OrderItemRepository orderItemRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -72,19 +72,27 @@ public class CursomcApplication implements CommandLineRunner {
 		OrderEntity o1 = new OrderEntity(null, sdf.parse("30/04/2020 10:32"), cli1, add1);
 		OrderEntity o2 = new OrderEntity(null, sdf.parse("10/10/2020 19:35"), cli1, add2);
 		PaymentEntity p1 = new PaymentCardEntity(null, StatePayment.SETTLED, o1, 6);
-		o1.setPayment(p1);
 		PaymentEntity p2 = new PaymentSlipEntity(null, StatePayment.PENDING, o2, sdf.parse("20/10/2020 00:00"), null);
-		o2.setPayment(p2);
+		OrderItemEntity i1 = new OrderItemEntity(o1, prod1, 0.00, 1, 2000.00);
+		OrderItemEntity i2 = new OrderItemEntity(o1, prod3, 0.00, 2, 80.00);
+		OrderItemEntity i3 = new OrderItemEntity(o2, prod2, 100.00, 1, 800.00);
 
 		cat1.getProducts().addAll(Arrays.asList(prod1, prod2, prod3));
 		cat2.getProducts().addAll(Arrays.asList(prod2));
 		prod1.getCategories().addAll(Arrays.asList(cat1));
 		prod2.getCategories().addAll(Arrays.asList(cat1, cat2));
 		prod3.getCategories().addAll(Arrays.asList(cat1));
+		prod1.getItems().addAll(Arrays.asList(i1));
+		prod2.getItems().addAll(Arrays.asList(i3));
+		prod3.getItems().addAll(Arrays.asList(i2));
 		e1.getCities().addAll(Arrays.asList(c1));
 		e2.getCities().addAll(Arrays.asList(c2,c3));
 		cli1.getPhones().addAll(Arrays.asList("27363323", "93838393"));
 		cli1.getAddresses().addAll(Arrays.asList(add1, add2));
+		o1.setPayment(p1);
+		o2.setPayment(p2);
+		o1.getItems().addAll(Arrays.asList(i1, i2));
+		o2.getItems().addAll(Arrays.asList(i3));
 		cli1.getOrders().addAll(Arrays.asList(o1, o2));
 
 		categoryRepository.saveAll(Arrays.asList(cat1,cat2));
@@ -95,5 +103,6 @@ public class CursomcApplication implements CommandLineRunner {
 		addressRepository.saveAll(Arrays.asList(add1, add2));
 		orderRepository.saveAll(Arrays.asList(o1, o2));
 		paymentRepository.saveAll(Arrays.asList(p1, p2));
+		orderItemRepository.saveAll(Arrays.asList(i1, i2, i3));
 	}
 }

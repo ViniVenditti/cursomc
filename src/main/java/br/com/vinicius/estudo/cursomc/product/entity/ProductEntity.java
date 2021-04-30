@@ -1,14 +1,19 @@
 package br.com.vinicius.estudo.cursomc.product.entity;
 
 import br.com.vinicius.estudo.cursomc.category.entity.CategoryEntity;
+import br.com.vinicius.estudo.cursomc.order.entity.OrderEntity;
+import br.com.vinicius.estudo.cursomc.order.entity.OrderItemEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 //@AllArgsConstructor
 //@NoArgsConstructor
@@ -30,6 +35,9 @@ public class ProductEntity {
     )
     private List<CategoryEntity> categories = new ArrayList<>();
 
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItemEntity> items = new HashSet<>();
+
     public ProductEntity() {
     }
 
@@ -39,6 +47,18 @@ public class ProductEntity {
         this.price = price;
     }
 
+    public List<OrderEntity> getOrders() {
+        List<OrderEntity> list = new ArrayList<>();
+        for (OrderItemEntity x : items) list.add(x.getOrderEntity());
+        return list;
+    }
+
+    public Set<OrderItemEntity> getItems() {
+        return items;
+    }
+    public void setItems(Set<OrderItemEntity> items) {
+        this.items = items;
+    }
     public Long getId() {
         return id;
     }
