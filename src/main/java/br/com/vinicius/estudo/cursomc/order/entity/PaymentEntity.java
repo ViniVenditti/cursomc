@@ -1,6 +1,7 @@
 package br.com.vinicius.estudo.cursomc.order.entity;
 
 import br.com.vinicius.estudo.cursomc.enums.StatePayment;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -15,6 +16,7 @@ public abstract class PaymentEntity {
     @OneToOne
     @JoinColumn(name = "order_id")
     @MapsId
+    @JsonBackReference
     private OrderEntity order;
 
     public PaymentEntity() {

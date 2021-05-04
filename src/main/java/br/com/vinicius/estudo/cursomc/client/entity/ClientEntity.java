@@ -3,6 +3,7 @@ package br.com.vinicius.estudo.cursomc.client.entity;
 import br.com.vinicius.estudo.cursomc.address.entity.AddressEntity;
 import br.com.vinicius.estudo.cursomc.enums.ClientType;
 import br.com.vinicius.estudo.cursomc.order.entity.OrderEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class ClientEntity {
     private Integer type;
 
     @OneToMany(mappedBy = "client")
+    @JsonBackReference
     private List<OrderEntity> orders = new ArrayList<>();
 
     @JsonManagedReference

@@ -1,6 +1,7 @@
 package br.com.vinicius.estudo.cursomc.order.entity;
 
 import br.com.vinicius.estudo.cursomc.product.entity.ProductEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.Entity;
 @Entity
 public class OrderItemEntity {
 
+    @JsonIgnore
     @EmbeddedId
     private OrderItemPK id = new OrderItemPK();
 
@@ -26,6 +28,7 @@ public class OrderItemEntity {
         this.price = price;
     }
 
+    @JsonIgnore
     public OrderEntity getOrderEntity() {
         return id.getOrder();
     }

@@ -4,6 +4,7 @@ import br.com.vinicius.estudo.cursomc.category.entity.CategoryEntity;
 import br.com.vinicius.estudo.cursomc.order.entity.OrderEntity;
 import br.com.vinicius.estudo.cursomc.order.entity.OrderItemEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,6 +36,7 @@ public class ProductEntity {
     )
     private List<CategoryEntity> categories = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "id.product")
     private Set<OrderItemEntity> items = new HashSet<>();
 
@@ -47,6 +49,7 @@ public class ProductEntity {
         this.price = price;
     }
 
+    @JsonIgnore
     public List<OrderEntity> getOrders() {
         List<OrderEntity> list = new ArrayList<>();
         for (OrderItemEntity x : items) list.add(x.getOrderEntity());

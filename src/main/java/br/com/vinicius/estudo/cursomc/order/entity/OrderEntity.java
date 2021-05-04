@@ -2,6 +2,8 @@ package br.com.vinicius.estudo.cursomc.order.entity;
 
 import br.com.vinicius.estudo.cursomc.address.entity.AddressEntity;
 import br.com.vinicius.estudo.cursomc.client.entity.ClientEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,13 +16,17 @@ public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date instant;
 
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "order")
     private PaymentEntity payment;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
+    @JsonManagedReference
     private ClientEntity client;
 
     @ManyToOne
