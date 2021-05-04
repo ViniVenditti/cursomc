@@ -16,7 +16,7 @@ public class OrderController {
     private OrderService orderService;
 
     @RequestMapping(value = "/{id}")
-    private ResponseEntity<?> findOrder(@PathVariable Long id) {
+    private ResponseEntity<OrderEntity> findOrder(@PathVariable Long id) {
         OrderEntity order = orderService.getOrder(id);
         return ResponseEntity.ok().body(order);
     }

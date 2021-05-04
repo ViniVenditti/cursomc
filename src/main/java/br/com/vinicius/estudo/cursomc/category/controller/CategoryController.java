@@ -26,8 +26,14 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<?> insertCategory(@RequestBody CategoryModel model) {
+    public ResponseEntity<CategoryEntity> insertCategory(@RequestBody CategoryModel model) {
         CategoryEntity entity = service.saveCategory(mapper.from(model));
         return ResponseEntity.status(HttpStatus.CREATED).body(entity);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<CategoryEntity> updateCategory(@PathVariable Long id, @RequestBody CategoryModel model){
+        CategoryEntity entity = service.updateCategory(id, model);
+        return ResponseEntity.ok().body(entity);
     }
 }
