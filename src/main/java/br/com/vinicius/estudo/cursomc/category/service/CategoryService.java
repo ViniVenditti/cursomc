@@ -4,7 +4,9 @@ import br.com.vinicius.estudo.cursomc.category.entity.CategoryEntity;
 import br.com.vinicius.estudo.cursomc.category.model.CategoryModel;
 import br.com.vinicius.estudo.cursomc.exceptions.CategoryNotFoundException;
 import br.com.vinicius.estudo.cursomc.category.repository.CategoryRepository;
+import br.com.vinicius.estudo.cursomc.exceptions.PermissionDeniedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -35,4 +37,12 @@ public class CategoryService {
         return categoryUpdated;
     }
 
+    public void deleteCategory(Long id) {
+        CategoryEntity category = getCategory(id);
+        try{
+            repo.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new PermissionDeniedException();
+        }
+    }
 }
