@@ -13,4 +13,11 @@ public class CategoryMapper {
         entity.setName(model.getName());
         return entity;
     }
+
+    public CategoryModel to (CategoryEntity entity){
+        CategoryModel model = new CategoryModel();
+        model.setId(entity.getId());
+        model.setName(entity.getName());
+        return model;
+    }
 }
