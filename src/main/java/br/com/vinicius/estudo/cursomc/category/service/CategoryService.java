@@ -6,6 +6,7 @@ import br.com.vinicius.estudo.cursomc.category.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
@@ -19,6 +20,11 @@ public class CategoryService {
         if(byId.isPresent())
             return byId.get();
         throw new CategoryNotFoundException();
+    }
+
+    public CategoryEntity saveCategory(CategoryEntity entity) {
+        CategoryEntity save = repo.save(entity);
+        return save;
     }
 
 }
