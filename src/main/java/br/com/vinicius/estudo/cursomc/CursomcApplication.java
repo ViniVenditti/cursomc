@@ -57,6 +57,11 @@ public class CursomcApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		CategoryEntity cat1 = new CategoryEntity("Informática");
 		CategoryEntity cat2 = new CategoryEntity("Escritório");
+		CategoryEntity cat3 = new CategoryEntity("Cama mesa e banho");
+		CategoryEntity cat4 = new CategoryEntity("Eletrônicos");
+		CategoryEntity cat5 = new CategoryEntity("Jardinagem");
+		CategoryEntity cat6 = new CategoryEntity("Decoração");
+		CategoryEntity cat7 = new CategoryEntity("Perfumaria");
 		ProductEntity prod1 = new ProductEntity(null, "Computador", 2000.00);
 		ProductEntity prod2 = new ProductEntity(null, "Impressora", 800.00);
 		ProductEntity prod3 = new ProductEntity(null, "mouse", 80.00);
@@ -95,7 +100,7 @@ public class CursomcApplication implements CommandLineRunner {
 		o2.getItems().addAll(Arrays.asList(i3));
 		cli1.getOrders().addAll(Arrays.asList(o1, o2));
 
-		categoryRepository.saveAll(Arrays.asList(cat1,cat2));
+		categoryRepository.saveAll(Arrays.asList(cat1,cat2, cat3, cat4, cat5, cat6, cat7));
 		productRepository.saveAll(Arrays.asList(prod1,prod2,prod3));
 		stateRepository.saveAll(Arrays.asList(e1,e2));
 		cityRepository.saveAll(Arrays.asList(c1,c2,c3));

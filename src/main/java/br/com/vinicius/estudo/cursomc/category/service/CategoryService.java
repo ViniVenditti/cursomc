@@ -8,10 +8,15 @@ import br.com.vinicius.estudo.cursomc.exceptions.CategoryNotFoundException;
 import br.com.vinicius.estudo.cursomc.exceptions.PermissionDeniedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
@@ -57,5 +62,11 @@ public class CategoryService {
                 .stream()
                 .map(entity -> mapper.to(entity))
                 .collect(Collectors.toList());
+    }
+
+    public Page<CategoryModel> getCategoryByPage(int page, int linesPerPage, String orderBy, String direction) {
+        Pageable pageable = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+        Page<CategoryEntity> all = repo.findAll(pageable);
+        return all.map(entity -> mapper.to(entity));
     }
 }
